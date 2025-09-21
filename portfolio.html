@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Website Builder</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #111;
+    color: #eee;
+    transition: all 0.3s ease;
+  }
+
+  header {
+    text-align: center;
+    padding: 3rem 1rem;
+    cursor: move;
+    background-color: #000;
+    color: #fff;
+    transition: background 0.3s;
+  }
+
+  header h1 {
+    margin: 0.5rem 0;
+    font-size: 3rem;
+  }
+
+  header p {
+    font-size: 1.5rem;
+    color: #ccc;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    background-color: #111;
+    padding: 1rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  section {
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+    cursor: move;
+    transition: all 0.3s;
+  }
+
+  h2 {
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .project-card {
+    background-color: #222;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px #000;
+    transition: all 0.3s;
+  }
+
+  .project-card h3 {
+    margin-top: 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #000;
+    color: #fff;
+    cursor: move;
+  }
+
+  .editor {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 320px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 15px #888;
+    z-index: 999;
+  }
+
+  .editor h3 {
+    margin-top: 0;
+  }
+
+  .editor label {
+    display: block;
+    margin: 0.5rem 0 0.2rem;
+    font-weight: bold;
+  }
+
+  .editor input, .editor textarea, .editor select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .editor button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .editor button:hover {
+    background-color: #333;
+  }
+
+  .color-input {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .color-input input[type=color] {
+    flex: 1;
+  }
+</style>
+</head>
+<body>
+
+<header id="headerSection">
+  <h1 id="userName">Your Name</h1>
+  <p id="userTagline">Your Tagline / Profession</p>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p id="aboutText">Write a short bio about yourself, your skills, and your goals...</p>
+</section>
+
+<section id="portfolio">
+  <h2>My Projects</h2>
+  <div id="projectsList">
+    <div class="project-card">
+      <h3>Project 1</h3>
+      <p>Description of your first project.</p>
+    </div>
+    <div class="project-card">
+      <h3>Project 2</h3>
+      <p>Description of your second project.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <p id="contactInfo">Email: example@portfolio.com | Phone: 123-456-7890</p>
+</section>
+<!-- Return Home Button -->
+<div style="text-align:center; margin: 40px 0;">
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+          style="padding: 12px 25px; 
+                 background-color: #e4ecec; 
+                 border: none; 
+                 border-radius: 8px; 
+                 color: #000; 
+                 font-weight: bold; 
+                 cursor: pointer;">
+    Return Home
+  </button>
+</div>
+
+<footer id="footerSection">
+  &copy; <span id="year"></span> Your Name. All rights reserved.
+</footer>
+
+<div class="editor">
+  <h3>Portfolio Editor</h3>
+
+  <label for="inputName">Name</label>
+  <input type="text" id="inputName" placeholder="Your Name">
+
+  <label for="inputTagline">Tagline</label>
+  <input type="text" id="inputTagline" placeholder="Your Profession or Motto">
+
+  <label for="inputAbout">Bio</label>
+  <textarea id="inputAbout" rows="3" placeholder="Write about yourself"></textarea>
+
+  <label for="inputContact">Contact Info</label>
+  <input type="text" id="inputContact" placeholder="Email | Phone">
+
+  <label>Portfolio Projects (title:description, comma separated)</label>
+  <input type="text" id="inputProjects" placeholder="Project1:Description1, Project2:Description2">
+
+  <label>Background Color</label>
+  <div class="color-input">
+    <input type="color" id="bgColorPicker" value="#111111">
+  </div>
+
+  <label>Text Color</label>
+  <div class="color-input">
+    <input type="color" id="textColorPicker" value="#eee">
+  </div>
+
+  <label>Accent Color</label>
+  <div class="color-input">
+    <input type="color" id="accentColorPicker" value="#ff6600">
+  </div>
+
+  <label>Header Font Size</label>
+  <input type="number" id="headerFontSize" value="3" min="1" max="5" step="0.1">
+
+  <label>Body Font Size</label>
+  <input type="number" id="bodyFontSize" value="1" min="0.5" max="3" step="0.1">
+
+  <label for="darkMode">Dark Mode</label>
+  <select id="darkMode">
+    <option value="dark">Dark</option>
+    <option value="light">Light</option>
+  </select>
+
+  <button id="updateBtn">Update Portfolio</button>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const userName = document.getElementById('userName');
+const userTagline = document.getElementById('userTagline');
+const aboutText = document.getElementById('aboutText');
+const projectsList = document.getElementById('projectsList');
+const contactInfo = document.getElementById('contactInfo');
+
+const inputName = document.getElementById('inputName');
+const inputTagline = document.getElementById('inputTagline');
+const inputAbout = document.getElementById('inputAbout');
+const inputContact = document.getElementById('inputContact');
+const inputProjects = document.getElementById('inputProjects');
+
+const bgColorPicker = document.getElementById('bgColorPicker');
+const textColorPicker = document.getElementById('textColorPicker');
+const accentColorPicker = document.getElementById('accentColorPicker');
+const headerFontSize = document.getElementById('headerFontSize');
+const bodyFontSize = document.getElementById('bodyFontSize');
+const darkMode = document.getElementById('darkMode');
+const updateBtn = document.getElementById('updateBtn');
+
+[bgColorPicker, textColorPicker, accentColorPicker, headerFontSize, bodyFontSize, darkMode].forEach(input => {
+  input.addEventListener('input', applyChanges);
+});
+
+updateBtn.addEventListener('click', applyChanges);
+
+function applyChanges() {
+  userName.textContent = inputName.value || "Your Name";
+  userTagline.textContent = inputTagline.value || "Your Tagline / Profession";
+  aboutText.textContent = inputAbout.value || "Write a short bio about yourself...";
+  contactInfo.textContent = inputContact.value || "Email: example@portfolio.com | Phone: 123-456-7890";
+
+  const projects = inputProjects.value.split(',').map(p => p.trim()).filter(p => p);
+  projectsList.innerHTML = '';
+  projects.forEach(project => {
+    const [title, desc] = project.split(':');
+    const div = document.createElement('div');
+    div.classList.add('project-card');
+    div.innerHTML = `<h3>${title || 'Project'}</h3><p>${desc || 'Description'}</p>`;
+    projectsList.appendChild(div);
+  });
+  if(projects.length === 0){
+    projectsList.innerHTML = `<div class="project-card"><h3>Project 1</h3><p>Description of project 1.</p></div>`;
+  }
+
+  document.body.style.backgroundColor = bgColorPicker.value;
+  document.body.style.color = textColorPicker.value;
+  document.querySelectorAll('h2').forEach(h => h.style.color = accentColorPicker.value);
+  userName.style.fontSize = headerFontSize.value + "rem";
+  userTagline.style.fontSize = (bodyFontSize.value * 1.2) + "rem";
+  document.querySelectorAll('section, .project-card, p').forEach(el => el.style.fontSize = bodyFontSize.value + "rem");
+
+  if(darkMode.value === "dark") {
+    document.body.style.backgroundColor = "#111";
+    document.body.style.color = "#eee";
+    document.querySelectorAll('section').forEach(s => s.style.backgroundColor = "#222");
+  } else {
+    document.body.style.backgroundColor = "#fff";
+    document.body.style.color = "#111";
+    document.querySelectorAll('section').forEach(s => s.style.backgroundColor = "#f5f5f5");
+  }
+}
+
+let dragSrcEl = null;
+const sections = document.querySelectorAll('header, section, footer');
+sections.forEach(section => {
+  section.setAttribute('draggable', true);
+  section.addEventListener('dragstart', (e) => dragSrcEl = section);
+  section.addEventListener('dragover', (e) => e.preventDefault());
+  section.addEventListener('drop', (e) => {
+    e.preventDefault();
+    if(dragSrcEl !== section) section.parentNode.insertBefore(dragSrcEl, section.nextSibling);
+  });
+});
+</script>
+
+</body>
+</html>
+

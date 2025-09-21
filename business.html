@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Website Builder</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s ease;
+  }
+
+  header {
+    background-color: burlywood;
+    color: black;
+    text-align: center;
+    padding: 2rem;
+    cursor: move;
+  }
+
+  header h1 {
+    margin: 0.5rem 0;
+    font-size: 2.5rem;
+  }
+
+  header p {
+    font-size: 1.2rem;
+  }
+
+  nav {
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  section {
+    padding: 2rem;
+    max-width: 900px;
+    margin: auto;
+    cursor: move;
+    transition: all 0.3s ease;
+  }
+
+  h2 {
+    color: burlywood;
+  }
+
+  .service-card {
+    background-color: #fdf5e6;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #ccc;
+    transition: all 0.3s ease;
+  }
+
+  footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    cursor: move;
+  }
+
+  .editor {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: burlywood;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 320px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0px 0px 10px #888;
+  }
+
+  .editor h3 {
+    margin-top: 0;
+  }
+
+  .editor label {
+    display: block;
+    margin: 0.5rem 0 0.2rem;
+  }
+
+  .editor input, .editor textarea, .editor select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .editor button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .editor button:hover {
+    background-color: #333;
+  }
+
+  .color-input {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .color-input input[type=color] {
+    flex: 1;
+  }
+
+  .draggable-placeholder {
+    border: 2px dashed #888;
+    height: 50px;
+    margin: 1rem 0;
+  }
+</style>
+</head>
+<body>
+
+<header id="headerSection">
+  <h1 id="companyName">Your Company Name</h1>
+  <p id="tagline">Your tagline goes here</p>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p id="aboutText">Write something about your company...</p>
+</section>
+
+<section id="services">
+  <h2>Our Services</h2>
+  <div id="servicesList">
+    <div class="service-card">Service 1</div>
+    <div class="service-card">Service 2</div>
+    <div class="service-card">Service 3</div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p id="contactInfo">Email: example@company.com | Phone: 123-456-7890</p>
+</section>
+
+<!-- Return Home Button -->
+<div style="text-align:center; margin: 40px 0;">
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+          style="padding: 12px 25px; 
+                 background-color: #ff9900; 
+                 border: none; 
+                 border-radius: 8px; 
+                 color: #000; 
+                 font-weight: bold; 
+                 cursor: pointer;">
+    Return Home
+  </button>
+</div>
+
+
+<footer id="footerSection">
+  &copy; <span id="year"></span> Your Company Name. All rights reserved.
+</footer>
+
+
+<div class="editor">
+  <h3>Website Editor</h3>
+
+  <label for="inputCompanyName">Company Name</label>
+  <input type="text" id="inputCompanyName" placeholder="Enter company name">
+
+  <label for="inputTagline">Tagline</label>
+  <input type="text" id="inputTagline" placeholder="Enter tagline">
+
+  <label for="inputAbout">About Text</label>
+  <textarea id="inputAbout" rows="3" placeholder="Enter about text"></textarea>
+
+  <label for="inputServices">Services (comma separated)</label>
+  <input type="text" id="inputServices" placeholder="Service1, Service2, Service3">
+
+  <label for="inputContact">Contact Info</label>
+  <input type="text" id="inputContact" placeholder="Email | Phone">
+
+  <label>Background Color</label>
+  <div class="color-input">
+    <input type="color" id="bgColorPicker" value="#ffffff">
+  </div>
+
+  <label>Text Color</label>
+  <div class="color-input">
+    <input type="color" id="textColorPicker" value="#000000">
+  </div>
+
+  <label>Accent Color</label>
+  <div class="color-input">
+    <input type="color" id="accentColorPicker" value="#deb887">
+  </div>
+
+  <label>Header Font Size</label>
+  <input type="number" id="headerFontSize" value="2.5" min="1" max="5" step="0.1">
+
+  <label>Body Font Size</label>
+  <input type="number" id="bodyFontSize" value="1" min="0.5" max="3" step="0.1">
+
+  <label for="darkMode">Dark Mode</label>
+  <select id="darkMode">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+  </select>
+
+  <button id="updateBtn">Update Website</button>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const companyName = document.getElementById('companyName');
+  const tagline = document.getElementById('tagline');
+  const aboutText = document.getElementById('aboutText');
+  const servicesList = document.getElementById('servicesList');
+  const contactInfo = document.getElementById('contactInfo');
+
+  const inputCompanyName = document.getElementById('inputCompanyName');
+  const inputTagline = document.getElementById('inputTagline');
+  const inputAbout = document.getElementById('inputAbout');
+  const inputServices = document.getElementById('inputServices');
+  const inputContact = document.getElementById('inputContact');
+  const bgColorPicker = document.getElementById('bgColorPicker');
+  const textColorPicker = document.getElementById('textColorPicker');
+  const accentColorPicker = document.getElementById('accentColorPicker');
+  const headerFontSize = document.getElementById('headerFontSize');
+  const bodyFontSize = document.getElementById('bodyFontSize');
+  const darkMode = document.getElementById('darkMode');
+  const updateBtn = document.getElementById('updateBtn');
+
+  // Live updates
+  [bgColorPicker, textColorPicker, accentColorPicker, headerFontSize, bodyFontSize, darkMode].forEach(input => {
+    input.addEventListener('input', () => applyChanges());
+  });
+
+  updateBtn.addEventListener('click', () => applyChanges());
+
+  function applyChanges() {
+    companyName.textContent = inputCompanyName.value || "Your Company Name";
+    tagline.textContent = inputTagline.value || "Your tagline goes here";
+    aboutText.textContent = inputAbout.value || "Write something about your company...";
+
+    const services = inputServices.value.split(',').map(s => s.trim()).filter(s => s);
+    servicesList.innerHTML = '';
+    services.forEach(service => {
+      const div = document.createElement('div');
+      div.classList.add('service-card');
+      div.textContent = service;
+      servicesList.appendChild(div);
+    });
+    if(services.length === 0){
+      servicesList.innerHTML = '<div class="service-card">Service 1</div><div class="service-card">Service 2</div><div class="service-card">Service 3</div>';
+    }
+
+    contactInfo.textContent = inputContact.value || "Email: example@company.com | Phone: 123-456-7890";
+
+    document.body.style.backgroundColor = bgColorPicker.value;
+    document.body.style.color = textColorPicker.value;
+    document.querySelectorAll('h2').forEach(h => h.style.color = accentColorPicker.value);
+    companyName.style.fontSize = headerFontSize.value + "rem";
+    tagline.style.fontSize = (bodyFontSize.value * 1.2) + "rem";
+    document.querySelectorAll('section, .service-card, p').forEach(el => el.style.fontSize = bodyFontSize.value + "rem");
+
+    if(darkMode.value === "dark") {
+      document.body.style.backgroundColor = "#111";
+      document.body.style.color = "#eee";
+      document.querySelectorAll('section').forEach(s => s.style.backgroundColor = "#222");
+    }
+  }
+
+  let dragSrcEl = null;
+  const sections = document.querySelectorAll('header, section, footer');
+
+  sections.forEach(section => {
+    section.setAttribute('draggable', true);
+
+    section.addEventListener('dragstart', (e) => {
+      dragSrcEl = section;
+      e.dataTransfer.effectAllowed = 'move';
+    });
+
+    section.addEventListener('dragover', (e) => e.preventDefault());
+
+    section.addEventListener('drop', (e) => {
+      e.preventDefault();
+      if(dragSrcEl !== section) {
+        const parent = section.parentNode;
+        parent.insertBefore(dragSrcEl, section.nextSibling);
+      }
+    });
+  });
+
+</script>
+
+</body>
+</html>

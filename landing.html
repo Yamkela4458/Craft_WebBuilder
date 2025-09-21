@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landing Page Builder</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #111;
+    transition: all 0.3s ease;
+  }
+
+  header {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: linear-gradient(135deg, #000, #444);
+    color: #fff;
+    cursor: move;
+  }
+
+  header h1 {
+    margin: 0.5rem 0;
+    font-size: 3rem;
+  }
+
+  header p {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-btn {
+    background-color: #ff6600;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .cta-btn:hover {
+    background-color: #cc5200;
+  }
+
+  section {
+    max-width: 1000px;
+    margin: auto;
+    padding: 3rem 2rem;
+    text-align: center;
+    cursor: move;
+    transition: all 0.3s ease;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+    color: #ff6600;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .feature-card {
+    background-color: #f5f5f5;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ddd;
+    transition: 0.3s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .testimonials {
+    margin-top: 2rem;
+  }
+
+  .testimonial {
+    background-color: #eee;
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 10px;
+    max-width: 600px;
+  }
+
+  footer {
+    background-color: #000;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+    cursor: move;
+  }
+
+  footer button {
+    margin-top: 1rem;
+  }
+
+  .editor {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 340px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 15px #888;
+    z-index: 999;
+  }
+
+  .editor h3 {
+    margin-top: 0;
+  }
+
+  .editor label {
+    display: block;
+    margin: 0.5rem 0 0.2rem;
+    font-weight: bold;
+  }
+
+  .editor input, .editor textarea, .editor select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .editor button {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .editor button:hover {
+    background-color: #333;
+  }
+</style>
+</head>
+<body>
+
+<header id="heroSection">
+  <h1 id="heroTitle">Welcome to Our Landing Page</h1>
+  <p id="heroTagline">This is your tagline or value proposition.</p>
+  <button class="cta-btn" id="heroBtn">Get Started</button>
+</header>
+
+<section id="featuresSection">
+  <h2>Features</h2>
+  <div class="features" id="featuresList">
+    <div class="feature-card"><h3>Feature 1</h3><p>Description of feature 1.</p></div>
+    <div class="feature-card"><h3>Feature 2</h3><p>Description of feature 2.</p></div>
+    <div class="feature-card"><h3>Feature 3</h3><p>Description of feature 3.</p></div>
+  </div>
+</section>
+
+<section id="testimonialsSection">
+  <h2>Testimonials</h2>
+  <div class="testimonials" id="testimonialsList">
+    <div class="testimonial"><p>"This service is amazing!"</p><small>- Customer A</small></div>
+    <div class="testimonial"><p>"Highly recommend to everyone."</p><small>- Customer B</small></div>
+  </div>
+</section>
+<!-- home button -->
+<div style="text-align:center; margin: 40px 0;">
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+          style="padding: 12px 25px; 
+                 background-color: #f29b04; 
+                 border: none; 
+                 border-radius: 8px; 
+                 color: #000; 
+                 font-weight: bold; 
+                 cursor: pointer;">
+    Return Home
+  </button>
+</div>
+
+
+<footer id="footerSection">
+  <h2 id="footerCTA">Ready to get started?</h2>
+  <button class="cta-btn" id="footerBtn">Join Now</button>
+</footer>
+
+<div class="editor">
+  <h3>Landing Page Editor</h3>
+
+  <label>Hero Title</label>
+  <input type="text" id="inputHeroTitle" placeholder="Landing Page Title">
+
+  <label>Hero Tagline</label>
+  <input type="text" id="inputHeroTagline" placeholder="Hero tagline">
+
+  <label>Hero Button</label>
+  <input type="text" id="inputHeroBtn" placeholder="Button text">
+
+  <label>Features (title:desc, comma separated)</label>
+  <input type="text" id="inputFeatures" placeholder="Feature1:Description1, Feature2:Description2">
+
+  <label>Testimonials (quote-author, comma separated)</label>
+  <input type="text" id="inputTestimonials" placeholder="Great service!-Customer A, Amazing!-Customer B">
+
+  <label>Footer CTA</label>
+  <input type="text" id="inputFooterCTA" placeholder="Footer Call To Action">
+
+  <label>Footer Button</label>
+  <input type="text" id="inputFooterBtn" placeholder="Footer Button">
+
+  <label>Background Color</label>
+  <input type="color" id="bgColorPicker" value="#ffffff">
+
+  <label>Text Color</label>
+  <input type="color" id="textColorPicker" value="#111111">
+
+  <label>Accent Color</label>
+  <input type="color" id="accentColorPicker" value="#ff6600">
+
+  <label>Font Size</label>
+  <input type="number" id="bodyFontSize" value="1" min="0.8" max="2" step="0.1">
+
+  <label for="darkMode">Theme</label>
+  <select id="darkMode">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+  </select>
+
+  <button id="updateBtn">Update Page</button>
+</div>
+
+<script>
+const heroTitle = document.getElementById('heroTitle');
+const heroTagline = document.getElementById('heroTagline');
+const heroBtn = document.getElementById('heroBtn');
+const featuresList = document.getElementById('featuresList');
+const testimonialsList = document.getElementById('testimonialsList');
+const footerCTA = document.getElementById('footerCTA');
+const footerBtn = document.getElementById('footerBtn');
+
+const inputHeroTitle = document.getElementById('inputHeroTitle');
+const inputHeroTagline = document.getElementById('inputHeroTagline');
+const inputHeroBtn = document.getElementById('inputHeroBtn');
+const inputFeatures = document.getElementById('inputFeatures');
+const inputTestimonials = document.getElementById('inputTestimonials');
+const inputFooterCTA = document.getElementById('inputFooterCTA');
+const inputFooterBtn = document.getElementById('inputFooterBtn');
+
+const bgColorPicker = document.getElementById('bgColorPicker');
+const textColorPicker = document.getElementById('textColorPicker');
+const accentColorPicker = document.getElementById('accentColorPicker');
+const bodyFontSize = document.getElementById('bodyFontSize');
+const darkMode = document.getElementById('darkMode');
+const updateBtn = document.getElementById('updateBtn');
+
+// apply changes
+function applyChanges() {
+  heroTitle.textContent = inputHeroTitle.value || "Welcome to Our Landing Page";
+  heroTagline.textContent = inputHeroTagline.value || "This is your tagline or value proposition.";
+  heroBtn.textContent = inputHeroBtn.value || "Get Started";
+
+  // Features
+  const features = inputFeatures.value.split(',').map(f => f.trim()).filter(f => f);
+  featuresList.innerHTML = '';
+  features.forEach(f => {
+    const [title, desc] = f.split(':');
+    featuresList.innerHTML += `<div class="feature-card"><h3>${title || "Feature"}</h3><p>${desc || "Description"}</p></div>`;
+  });
+  if (features.length === 0) {
+    featuresList.innerHTML = `<div class="feature-card"><h3>Feature 1</h3><p>Description of feature 1.</p></div>`;
+  }
+
+  // Testimonials
+  const testimonials = inputTestimonials.value.split(',').map(t => t.trim()).filter(t => t);
+  testimonialsList.innerHTML = '';
+  testimonials.forEach(t => {
+    const [quote, author] = t.split('-');
+    testimonialsList.innerHTML += `<div class="testimonial"><p>"${quote || 'Great experience!'}"</p><small>- ${author || 'Customer'}</small></div>`;
+  });
+
+  // Footer
+  footerCTA.textContent = inputFooterCTA.value || "Ready to get started?";
+  footerBtn.textContent = inputFooterBtn.value || "Join Now";
+
+  // Colors and fonts
+  document.body.style.backgroundColor = bgColorPicker.value;
+  document.body.style.color = textColorPicker.value;
+  document.querySelectorAll('h2').forEach(h => h.style.color = accentColorPicker.value);
+  document.querySelectorAll('h1,h2,h3').forEach(h => h.style.fontSize = (parseFloat(bodyFontSize.value) * 1.5) + "rem");
+  document.querySelectorAll('p').forEach(p => p.style.fontSize = bodyFontSize.value + "rem");
+
+  if (darkMode.value === "dark") {
+    document.body.style.backgroundColor = "#111";
+    document.body.style.color = "#eee";
+    document.querySelectorAll('.feature-card').forEach(card => card.style.backgroundColor = "#222");
+    document.querySelectorAll('.testimonial').forEach(t => t.style.backgroundColor = "#333");
+  } else {
+    document.body.style.backgroundColor = "#fff";
+    document.body.style.color = "#111";
+    document.querySelectorAll('.feature-card').forEach(card => card.style.backgroundColor = "#f5f5f5");
+    document.querySelectorAll('.testimonial').forEach(t => t.style.backgroundColor = "#eee");
+  }
+}
+
+updateBtn.addEventListener('click', applyChanges);
+
+let dragSrcEl = null;
+const sections = document.querySelectorAll('header, section, footer');
+sections.forEach(section => {
+  section.setAttribute('draggable', true);
+  section.addEventListener('dragstart', (e) => dragSrcEl = section);
+  section.addEventListener('dragover', (e) => e.preventDefault());
+  section.addEventListener('drop', (e) => {
+    e.preventDefault();
+    if (dragSrcEl !== section) section.parentNode.insertBefore(dragSrcEl, section.nextSibling);
+  });
+});
+</script>
+
+</body>
+</html>
